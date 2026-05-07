@@ -1,24 +1,40 @@
 package app;
 
 import model.Task;
-import model.TaskStatus;
+import service.TaskService;
+import storage.InMemoryTaskRepository;
+import storage.TaskRepository;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Main {
-
     public static void main(String[] args) {
-        Map<Integer, Task> tasks = new HashMap<>();
-        tasks.put(1, new Task(
-                TaskStatus.IN_PROGRESS,
-                "Build CLI Task Manager",
-                LocalDateTime.now()));
+        // wire repository -> service (manual constructor injection)
+        TaskRepository repo = new InMemoryTaskRepository();
+        TaskService service = new TaskService(repo);
 
-        System.out.println(tasks.get(1));
-        System.out.println(tasks.get(1).isComplete());
-        tasks.get(1).markComplete();
-        System.out.println(tasks.get(1).isComplete());
+        // create tasks via service
+        Task t1 = service.createTask("Build CLI Task Manager");
+        Task t2 = service.createTask("Write README");
+
+        // list tasks
+        System.out.println("All tasks after creation:");
+        List<Task> all = service.listTasks();
+        all.forEach(t -> {
+            System.out.println("ID: " + t.getId());
+            System.out.println(t);
+            System.out.println("---");
+        });
+
+        // mark first complete
+        service.markComplete(t1.getId());
+
+        System.out.println("After marking ID " + t1.getId() + " complete:");
+        service.getTask(t1.getId()).ifPresent(System.out::println);
+
+        // delete second
+        service.deleteTask(t2.getId());
+        System.out.println("After deleting ID " + t2.getId() + ", all tasks:");
+        service.listTasks().forEach(t -> System.out.println(t.getId() + ": " + t.getDescription()));
     }
 }

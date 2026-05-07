@@ -4,20 +4,23 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Task {
-    private int id;
+    private Integer id;
     private TaskStatus status;
     private String description;
     private LocalDateTime createdAt;
 
     public Task(TaskStatus status, String description, LocalDateTime createdAt) {
-//        this.id = id;
         this.status = status;
         this.description = description;
         this.createdAt = createdAt;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public boolean isComplete() {
@@ -25,15 +28,15 @@ public class Task {
     }
 
     public void markComplete() {
-        status = TaskStatus.COMPLETE;
+        this.status = TaskStatus.COMPLETE;
     }
 
     public void markInProgress() {
-        status = TaskStatus.IN_PROGRESS;
+        this.status = TaskStatus.IN_PROGRESS;
     }
 
     public void markCancelled() {
-        status = TaskStatus.CANCELLED;
+        this.status = TaskStatus.CANCELLED;
     }
 
     public TaskStatus getStatus() {
@@ -57,11 +60,11 @@ public class Task {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id == task.id && status == task.status && Objects.equals(description, task.description) && Objects.equals(createdAt, task.createdAt);
+        return Objects.equals(id, task.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, description, createdAt);
+        return Objects.hashCode(id);
     }
 }
