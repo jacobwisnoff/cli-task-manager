@@ -35,13 +35,21 @@ public class TaskService {
     }
 
     // Mark a task complete
-    public Optional<Task> markComplete(int id) {
+    public void markComplete(int id) {
         Optional<Task> maybe = repo.findById(id);
         maybe.ifPresent(task -> {
             task.markComplete();
             repo.save(task);
         });
-        return maybe;
+    }
+
+    // Mark a task complete
+    public void markCanceled(int id) {
+        Optional<Task> maybe = repo.findById(id);
+        maybe.ifPresent(task -> {
+            task.markCanceled();
+            repo.save(task);
+        });
     }
 
     // Delete a task

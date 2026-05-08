@@ -13,9 +13,11 @@ class TaskServiceTest {
     TaskService service = new TaskService(repo);
 
     @Test
-    void createTask_increaseTaskCount() {
+    void createTask_increaseTaskCounter() {
         Task t1 = service.createTask("Task 1");
-        assertEquals(1, t1.getId());
+        Task t2 = service.createTask("Task 2");
+        Task t3 = service.createTask("Task 3");
+        assertEquals(3, t3.getId(), "Should return Id of 3");
     }
 
     @Test

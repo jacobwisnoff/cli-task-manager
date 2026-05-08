@@ -9,6 +9,10 @@ public class Task {
     private String description;
     private LocalDateTime createdAt;
 
+    public Task() {
+
+    }
+
     public Task(TaskStatus status, String description, LocalDateTime createdAt) {
         this.status = status;
         this.description = description;
@@ -23,6 +27,7 @@ public class Task {
         this.id = id;
     }
 
+
     public boolean isComplete() {
         return status == TaskStatus.COMPLETE;
     }
@@ -35,8 +40,8 @@ public class Task {
         this.status = TaskStatus.IN_PROGRESS;
     }
 
-    public void markCancelled() {
-        this.status = TaskStatus.CANCELLED;
+    public void markCanceled() {
+        this.status = TaskStatus.CANCELED;
     }
 
     public TaskStatus getStatus() {
