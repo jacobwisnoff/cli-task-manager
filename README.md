@@ -18,7 +18,7 @@ java -jar target/cli-task-manager.jar
 ### or once installed, from any folder:
 java -jar /path/to/cli-task-manager.jar
 
-### Data file location
+## Data file location
 
 By default, tasks are stored in the user's home directory:
 
