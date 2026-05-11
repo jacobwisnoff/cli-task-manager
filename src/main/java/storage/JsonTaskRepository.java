@@ -112,7 +112,7 @@ public class JsonTaskRepository implements TaskRepository {
             }
 
             // Safe to parse
-            List<Task> tasks = mapper.readValue(filePath.toFile(), new TypeReference<List<Task>>() {});
+            List<Task> tasks = mapper.readValue(filePath.toFile(), new TypeReference<>() {});
 
             int maxId = 0;
             for (Task task : tasks) {
@@ -130,7 +130,7 @@ public class JsonTaskRepository implements TaskRepository {
 
             idGenerator.set(maxId);
 
-            // Optional: rewrite normalized data (addresses partially corrupted files)
+            //Optional: rewrite normalized data (addresses partially corrupted files)
             //writeStoreToFile();
 
         } catch (com.fasterxml.jackson.databind.exc.MismatchedInputException e) {

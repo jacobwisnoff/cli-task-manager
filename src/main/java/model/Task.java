@@ -1,8 +1,12 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Task {
     private Integer id;
     private TaskStatus status;
@@ -27,7 +31,7 @@ public class Task {
         this.id = id;
     }
 
-
+    @JsonIgnore
     public boolean isComplete() {
         return status == TaskStatus.COMPLETE;
     }
