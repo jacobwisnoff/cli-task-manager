@@ -3,7 +3,7 @@
 A lightweight command-line task manager written in Java.  
 Features: create, list, complete/cancel, and delete tasks. Tasks are persisted to a JSON file between runs.
 
-Tech: Java 24, picocli for CLI parsing, Jackson for JSON.
+Tech: Java 24, picocli for CLI parsing, Jackson for JSON serialization.
 
 ---
 
