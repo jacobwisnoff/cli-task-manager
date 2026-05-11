@@ -15,7 +15,7 @@ Tech: Java 24, picocli for CLI parsing, Jackson for JSON serialization.
 Start the interactive REPL:
 
 java -jar target/cli-task-manager.jar
-### or once installed, from any folder:
+OR once installed, from any folder:
 java -jar /path/to/cli-task-manager.jar
 
 ## Data file location
